@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 
-@CrossOrigin(origins = "http://localhost:3004/" )
+@CrossOrigin(origins = "http://localhost:3000/" )
 public class MainController {
 
     private final RestTemplate restTemplate = new RestTemplate();
@@ -52,12 +53,6 @@ public class MainController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/news")
-    public ResponseEntity<Object> getNewsData(@RequestParam String story) {
-        String url = "http://localhost:8081/api/news/full-story?story=" + story;
-        Object response = restTemplate.getForObject(url, Object.class);
-        return ResponseEntity.ok(response);
-    }
 
     // ================= Subscription Flow (via OTP) =================
 
